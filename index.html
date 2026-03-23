@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLANET Açaí 🪐 | O Açaí Mais Delirante do Planeta</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* === VARIÁVEIS DE CORES & TEMA === */
+        :root {
+            --bg-space: #130525;
+            /* Roxo muito escuro, não é preto */
+            --neon-purple: #a855f7;
+            --magenta: #ec4899;
+            --gold: #facc15;
+            --lime: #34d399;
+            --white: #ffffff;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+        }
+
+        /* === RESET & BASE === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-space);
+            background-image: radial-gradient(circle at top left, rgba(168, 85, 247, 0.15), transparent 40%),
+                radial-gradient(circle at bottom right, rgba(236, 72, 153, 0.15), transparent 40%);
+            color: var(--white);
+            overflow-x: hidden;
+        }
+
+        /* === HEADER === */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(19, 5, 37, 0.85);
+            backdrop-filter: blur(10px);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(168, 85, 247, 0.2);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            background: linear-gradient(90deg, var(--magenta), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(236, 72, 153, 0.4);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--neon-purple);
+            text-shadow: 0 0 10px var(--neon-purple);
+        }
+
+        .btn-header {
+            background: var(--gold);
+            color: var(--bg-space);
+            padding: 10px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 800;
+            text-transform: uppercase;
+            box-shadow: 0 0 15px rgba(236, 72, 153, 0.6);
+            transition: all 0.3s ease;
+        }
+
+        .btn-header:hover {
+            transform: scale(1.08);
+            box-shadow: 0 0 25px rgba(250, 204, 21, 0.8);
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            font-size: 2rem;
+            background: none;
+            border: none;
+            color: var(--white);
+            cursor: pointer;
+        }
+
+        /* === HERO SECTION === */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 120px 5% 60px;
+            position: relative;
+            background: linear-gradient(to bottom, rgba(19, 5, 37, 0.6), rgba(19, 5, 37, 0.9)),
+                url('img/hero-acai.jpg') center/cover no-repeat;
+        }
+
+        /* Fallback gradient if image is not found */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.2) 0%, rgba(19, 5, 37, 1) 80%);
+            z-index: -1;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, var(--magenta), var(--neon-purple), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            text-shadow: 0 10px 30px rgba(168, 85, 247, 0.3);
+            max-width: 1000px;
+        }
+
+        .hero p {
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            font-weight: 600;
+            color: #e2e8f0;
+            max-width: 700px;
+            margin-bottom: 40px;
+            line-height: 1.5;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: var(--bg-space);
+            padding: 20px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            box-shadow: 0 0 20px rgba(250, 204, 21, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05) translateY(-5px);
+            box-shadow: 0 0 40px rgba(250, 204, 21, 0.8);
+        }
+
+        .btn-secondary {
+            background: var(--lime);
+            color: var(--bg-space);
+            padding: 20px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 800;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            transform: scale(1.05) translateY(-5px);
+            box-shadow: 0 0 25px rgba(52, 211, 153, 0.6);
+        }
+
+        /* === ROLETA SECTION === */
+        .oferta {
+            padding: 100px 5%;
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(236, 72, 153, 0.1));
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            border-top: 1px solid rgba(236, 72, 153, 0.3);
+            border-bottom: 1px solid rgba(236, 72, 153, 0.3);
+        }
+
+        .oferta h2 {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 900;
+            color: var(--white);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            text-shadow: 0 0 15px var(--magenta);
+        }
+
+        .oferta p {
+            font-size: 1.2rem;
+            margin-bottom: 50px;
+            color: #cbd5e1;
+            max-width: 600px;
+        }
+
+        /* Roleta UI */
+        .roulette-wrapper {
+            position: relative;
+            width: 320px;
+            height: 320px;
+            margin-bottom: 40px;
+        }
+
+        .pointer {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 50px;
+            background: var(--gold);
+            clip-path: polygon(50% 100%, 0 0, 100% 0);
+            z-index: 10;
+            filter: drop-shadow(0 0 10px rgba(250, 204, 21, 0.8));
+        }
+
+        .wheel {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 8px solid var(--white);
+            box-shadow: 0 0 30px var(--neon-purple), inset 0 0 20px rgba(0, 0, 0, 0.5);
+            /* 5 fatias de 72 graus cada */
+            background: conic-gradient(#ec4899 0deg 72deg,
+                    #a855f7 72deg 144deg,
+                    #34d399 144deg 216deg,
+                    #fbbf24 216deg 288deg,
+                    #6366f1 288deg 360deg);
+            transition: transform 5s cubic-bezier(0.25, 0.1, 0.15, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .wheel-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: var(--white);
+            border-radius: 50%;
+            z-index: 5;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .btn-girar {
+            background: var(--gold);
+            color: var(--bg-space);
+            border: none;
+            padding: 15px 50px;
+            font-size: 1.5rem;
+            font-weight: 900;
+            border-radius: 50px;
+            cursor: pointer;
+            text-transform: uppercase;
+            box-shadow: 0 0 20px var(--gold);
+            animation: pulse 2s infinite;
+            transition: transform 0.2s;
+        }
+
+        .btn-girar:active {
+            transform: scale(0.95);
+        }
+
+        .btn-girar:disabled {
+            background: #555;
+            box-shadow: none;
+            cursor: not-allowed;
+            animation: none;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 15px var(--gold);
+            }
+
+            50% {
+                box-shadow: 0 0 30px var(--gold), 0 0 10px var(--white);
+            }
+
+            100% {
+                box-shadow: 0 0 15px var(--gold);
+            }
+        }
+
+        .result-box {
+            margin-top: 30px;
+            min-height: 80px;
+        }
+
+        .result-text {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--gold);
+            text-shadow: 0 0 20px var(--gold);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .result-text.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* === RESPONSIVO === */
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: var(--bg-space);
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                border-bottom: 2px solid var(--neon-purple);
+            }
+
+            nav.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .btn-header {
+                display: none;
+                /* Esconde no header mobile para simplificar, já tem no hero */
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">PLANET Açaí 🪐</div>
+        <button class="menu-toggle" id="menuToggle">☰</button>
+        <nav id="navMenu">
+            <ul>
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#cardapio">Cardápio</a></li>
+                <li><a href="#espaco">O Espaço</a></li>
+                <li><a href="#avaliacoes">Avaliações</a></li>
+            </ul>
+        </nav>
+        <a href="https://wa.me/5579999999999" class="btn-header">🛵 Pedir Já!</a>
+    </header>
+
+    <section id="inicio" class="hero">
+        <h1>O Açaí Mais Delirante do Planeta Chegou!</h1>
+        <p>Nutella original derretendo, cremosidade insana, frutas frescas e vibe espacial. Você vai querer repetir na
+            hora!</p>
+        <div class="hero-buttons">
+            <a href="https://wa.me/5579999999999?text=Quero%20Meu%20Açaí%20Agora!" class="btn-primary">Quero Meu Açaí
+                Agora! 🚀</a>
+            <a href="https://maps.app.goo.gl/hWWyQhrE2gkGAgLbA" target="_blank" class="btn-secondary">Ver Onde Estamos
+                📍</a>
+        </div>
+    </section>
+
+    <section id="oferta" class="oferta">
+        <h2>🎰 Gira a Roleta e Ganhe um Mimo!</h2>
+        <p>Primeira vez pelo site? Gire agora e garanta seu <strong>Adicional de Nutella Original GRÁTIS</strong> na
+            compra do seu primeiro açaí!</p>
+
+        <div class="roulette-wrapper">
+            <div class="pointer"></div>
+            <div class="wheel" id="wheel"></div>
+            <div class="wheel-center"></div>
+        </div>
+
+        <button class="btn-girar" id="btnGirar">Girar e Ganhar! 🎉</button>
+
+        <div class="result-box">
+            <div class="result-text" id="resultText"></div>
+        </div>
+    </section>
+    <script>
+        // === Menu Mobile Toggle ===
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            menuToggle.innerText = navMenu.classList.contains('active') ? '✕' : '☰';
+        });
+
+        // === Lógica da Roleta de Conversão (MODO SEGURO) ===
+        const wheel = document.getElementById('wheel');
+        const btnGirar = document.getElementById('btnGirar');
+        const resultText = document.getElementById('resultText');
+
+        // Todas as fatias levam ao mesmo prêmio seguro, mas com emojis diferentes para disfarçar!
+        const prizes = [
+            "Nutella GRÁTIS (na compra de 1 Açaí) 🍫",
+            "Nutella GRÁTIS (na compra de 1 Açaí) 🚀",
+            "Nutella GRÁTIS (na compra de 1 Açaí) 🪐",
+            "Nutella GRÁTIS (na compra de 1 Açaí) 🌟",
+            "Nutella GRÁTIS (na compra de 1 Açaí) 😍"
+        ];
+
+        let currentRotation = 0;
+        let isSpinning = false;
+
+        btnGirar.addEventListener('click', () => {
+            if (isSpinning) return;
+
+            isSpinning = true;
+            btnGirar.disabled = true;
+            btnGirar.innerText = "Girando... 🚀";
+            resultText.classList.remove('show');
+
+            // Gira no mínimo 5 voltas completas + ângulo aleatório
+            const randomDegree = Math.floor(Math.random() * 360);
+            const extraSpins = 360 * 5;
+            currentRotation += extraSpins + randomDegree;
+
+            // Aplica a rotação no CSS
+            wheel.style.transform = `rotate(${currentRotation}deg)`;
+
+            // Espera a animação de 5 segundos terminar
+            setTimeout(() => {
+                const normalizedDeg = currentRotation % 360;
+                const sliceIndex = Math.floor((360 - normalizedDeg) / 72) % 5;
+
+                // Pega o prêmio seguro
+                const wonPrize = prizes[sliceIndex];
+
+                // Mostra o resultado na tela
+                resultText.innerText = `VOCÊ GANHOU:\n${wonPrize}`;
+                resultText.classList.add('show');
+                btnGirar.innerText = "Prêmio Resgatado! 🎁";
+
+                // Mensagem pré-pronta com a REGRA CLARA para o WhatsApp
+                const numeroWhatsApp = "5579999999999"; // Coloque seu número aqui
+                const mensagem = `Opa! Girei a roleta no site do PLANET Açaí e ganhei meu Adicional de Nutella Grátis! 🍫 Quero comprar meu açaí agora para resgatar meu prêmio, como funciona? 🚀`;
+                const linkZap = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
+
+                // Redireciona pro zap depois de 3 segundos
+                setTimeout(() => {
+                    window.location.href = linkZap;
+                }, 3000);
+
+            }, 5000);
+        });
+    </script>
+</body>
+
+</html>
